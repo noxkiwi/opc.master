@@ -1,0 +1,13 @@
+{
+  "server>HostName"   : "localhost",
+  "server>Port"       : 4242,
+  "server>EndPoint"   : "nox/master/",
+  "master>MasterId"   : 1,
+  "logging>LogLevel"  : -1,
+  "logging>LogFile"   : "./master.log",
+  "database>HostName" : "localhost",
+  "database>Port"     : 3006,
+  "database>UserName" : "bar",
+  "database>PassWord" : "bat",
+  "database>DataBase" : "bay"
+}
