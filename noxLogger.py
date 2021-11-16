@@ -15,7 +15,9 @@ class noxLogger:
 
     # I will write the given text into stdout.
     def write(text):
-        print(text)
+        with open(configManager.get("logging>LogFile"), "a") as logFile:
+            print(text)
+            logFile.write(text + "\n")
 
     # I will decide whether to log the given text or not based on the given level.
     def writeLog(text, level):
