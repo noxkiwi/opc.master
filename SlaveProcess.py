@@ -2,6 +2,7 @@ import threading
 import time
 import subprocess
 from SlaveItem import SlaveItem
+from noxLogger import noxLogger
 
 # I am a slave process that will be executed inside its own thread.
 class SlaveProcess:
@@ -41,7 +42,7 @@ class SlaveProcess:
     def runThread(self):
         while True:
             if self.isRunning():
-                print(self.slaveItem.slave_name + " GOOD")
+                noxLogger.info(self.slaveItem.slave_name + " GOOD")
             else:
-                print(self.slaveItem.slave_name + " BAD...")
+                noxLogger.warning(self.slaveItem.slave_name + " BAD...")
             time.sleep(5)
