@@ -55,7 +55,6 @@ class DatabaseManager:
         try:
             noxLogger.debug("[0x10000011] - Starting query on " + str(self.HostName))
             noxLogger.debug("             - " + queryString)
-            print(queryString)
             myCursor.execute(queryString)
             myDb.commit()
         except Exception as e:

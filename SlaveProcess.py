@@ -19,10 +19,10 @@ class SlaveProcess:
 
     # I will solely start the thread that executes the subprocess.
     def start(self):
-        noxLogger.info("SlaveProcess start for " + self.slaveItem.slave_name + " begins")
+        noxLogger.info("opc.master SlaveProcess start for " + self.slaveItem.slave_name + " begins")
         self.slaveThread = threading.Thread(target=self.runThread)
         self.slaveThread.start()
-        noxLogger.info("SlaveProcess start for " + self.slaveItem.slave_name + " ends")
+        noxLogger.info("opc.master SlaveProcess start for " + self.slaveItem.slave_name + " ends")
 
     # I will wait for the specified amount of seconds before anything will happen.
     def wait(self):
@@ -30,18 +30,19 @@ class SlaveProcess:
 
     # I will solely stop the slave process.
     def stop(self):
-        noxLogger.info("SlaveProcess stop for " + self.slaveItem.slave_name + " begins")
+        noxLogger.info("opc.master SlaveProcess stop for " + self.slaveItem.slave_name + " begins")
         self.slaveThread.raise_exception()
         self.slaveThread.join()
-        noxLogger.info("SlaveProcess stop for " + self.slaveItem.slave_name + " ends")
+        noxLogger.info("opc.master SlaveProcess stop for " + self.slaveItem.slave_name + " ends")
 
     # I will set the subProcess to run if not already done.
     def isRunning(self):
         if self.subProcess is None:
-            noxLogger.info("isRunning for " + self.slaveItem.slave_name + " will run the command now")
+            noxLogger.info("opc.master isRunning for " + self.slaveItem.slave_name + " will run the command now")
             self.subProcess = True
-            subprocess.run(["python3.7", self.slaveItem.slave_directory + self.slaveItem.slave_command])
-            noxLogger.error("isRunning for " + self.slaveItem.slave_name + " process stopped")
+            noxLogger.error("opc.master executing python3.7 " + self.slaveItem.slave_directory + self.slaveItem.slave_command)
+            subprocess.run(["python3.7", self.slaveItem.slave_directory + self.slaveItem.slave_command], cwd=self.slaveItem.slave_directory)
+            noxLogger.error("opc.master isRunning for " + self.slaveItem.slave_name + " process stopped")
             return False
 
     # I am the threads function that will run the process.
@@ -51,4 +52,5 @@ class SlaveProcess:
                 noxLogger.info(self.slaveItem.slave_name + " GOOD")
             else:
                 noxLogger.warning(self.slaveItem.slave_name + " BAD...")
+                self.subProcess = None
             time.sleep(5)
