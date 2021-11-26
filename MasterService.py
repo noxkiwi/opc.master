@@ -33,7 +33,7 @@ class MasterService:
     def startSlaves(self):
         for slaveProcess in self.slaveProcesses:
             slaveProcess.start()
-            time.sleep(10)
+            time.sleep(8)
 
     # I will query for active slaves of the currently active Master server.
     def prepareSlaves(self):
