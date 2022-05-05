@@ -49,7 +49,7 @@ FROM
     `master`
 JOIN `slave` USING(`master_id`)
 WHERE TRUE
-    AND `master`.`master_id` = 1
+    AND `master`.`master_id` = 2
     AND `master`.`master_flags` & 1
     AND `slave`.`slave_flags` & 1
 ORDER BY

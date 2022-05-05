@@ -9,7 +9,7 @@ from ConfigManager import ConfigManager
 configManager = ConfigManager()
 
 if __name__ == "__main__":
-    # setup our server
+    # set up our server
     HostName = configManager.get("server>HostName")
     Port     = configManager.get("server>Port")
     Endpoint = configManager.get("server>EndPoint")
